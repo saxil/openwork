@@ -68,6 +68,8 @@ export function ImageViewer({
   }
 
   // Reset pan when zoom changes to 100 or less
+  // TODO: Consider moving this logic to the zoom change handler to avoid setState in effect.
+  // Keeping as-is for now to minimize risk in linter cleanup PR.
   useEffect(() => {
     if (zoom <= 100) {
       // eslint-disable-next-line react-hooks/set-state-in-effect

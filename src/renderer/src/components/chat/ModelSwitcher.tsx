@@ -70,6 +70,9 @@ export function ModelSwitcher({ threadId }: ModelSwitcherProps): React.JSX.Eleme
   const displayProviders = providers.length > 0 ? providers : FALLBACK_PROVIDERS
 
   // Set initial selected provider based on current model
+  // TODO: This pattern causes double renders. Consider refactoring to use useMemo
+  // to derive selectedProviderId instead of setting it in an effect.
+  // Keeping as-is for now to minimize risk in linter cleanup PR.
   useEffect(() => {
     if (!selectedProviderId && currentModel) {
       const model = models.find((m) => m.id === currentModel)
